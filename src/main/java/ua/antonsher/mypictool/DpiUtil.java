@@ -16,4 +16,8 @@ public class DpiUtil {
     public static double getPixelSizeMm(int dpi) {
         return MM_IN_INCH / dpi;
     }
+
+    public static double scaleFromStandardDpi(int dpi) {
+        return dpi / 72.;
+    }
 }

@@ -6,6 +6,8 @@ import javax.imageio.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MyPicTool {
     public static void main(String[] args) {
@@ -16,8 +18,8 @@ public class MyPicTool {
                 try {
                     BufferedImage input = ImageIO.read(file);
                     int dpi = 300;
-                    BufferedImage image = new TiledImageBuilder().buildTiledImage(input,
-                            DpiUtil.mmToPixel(new Dimension(150, 100), dpi),
+                    Dimension canvasDimension = DpiUtil.mmToPixel(new Dimension(150, 100), dpi);
+                    BufferedImage image = new TiledImageBuilder(canvasDimension, currentTimeCaption(), dpi).build(input,
                             DpiUtil.mmToPixel(new Dimension(35, 45), dpi));
                     String newName = file.getName().replaceAll("(\\.[^.]+)$", "") + "-10x15.jpg";
                     ImageFileWriter imageFileWriter = new JavaxImageFileWriter();
@@ -27,5 +29,9 @@ public class MyPicTool {
                 }
             }
         }
+    }
+
+    private static String currentTimeCaption() {
+        return new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new Date());
     }
 }
