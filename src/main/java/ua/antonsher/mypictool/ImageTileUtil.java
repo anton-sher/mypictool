@@ -1,4 +1,4 @@
-package ua.antonsher.passphoto;
+package ua.antonsher.mypictool;
 
 import javax.imageio.*;
 import javax.imageio.metadata.IIOMetadata;

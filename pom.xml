@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ua.antonsher</groupId>
-    <artifactId>passport-photo</artifactId>
+    <artifactId>mypictool</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <repositories>
