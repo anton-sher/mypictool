@@ -1,0 +1,32 @@
+- use slf4j+logback for logging
+- add unit test for tiled image builder
+- use args4j for main class
+- add possibility to specify sizes in args
+- add nullable/nonnull annotations in methods
+- add javadocs
+
+= M1: nice code
+
+- add the UI for selection and preview
+- add trimming in the UI
+- add rotation in the UI
+- trim images instead of scaling
+
+= M2: a UI
+
+= M3 : nice UI
+
+= Notes =
+- use scalr for scaling/trimming:
+        <dependency>
+            <groupId>org.imgscalr</groupId>
+            <artifactId>imgscalr-lib</artifactId>
+            <version>4.2</version>
+        </dependency>
+
+- use apache commons image writer
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-imaging</artifactId>
+            <version>1.0-20140325.172317-8</version>
+        </dependency>
