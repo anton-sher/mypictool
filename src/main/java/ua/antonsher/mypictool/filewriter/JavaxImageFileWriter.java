@@ -25,10 +25,7 @@ public class JavaxImageFileWriter implements ImageFileWriter {
     public static final String FORMAT_NAME = "JPEG";
 
     /**
-     * @param image image to save in a file.
-     * @param targetFile file in which the image is saved.
-     * @param dpi DPI information to add to file metadata. Size of the saved image are not affected by this parameter.
-     * @throws SaveImageException if something goes wrong
+     * {@inheritDoc}
      */
     @Override
     public void saveAsJpeg(@Nonnull BufferedImage image, @Nonnull File targetFile, int dpi) {
@@ -37,7 +34,7 @@ public class JavaxImageFileWriter implements ImageFileWriter {
         ImageWriter writer = null;
         IIOMetadata metadata = null;
         ImageWriteParam writeParam = null;
-        logger.debug("Looking up image writer");
+        logger.trace("Looking up image writer");
         ImageTypeSpecifier typeSpecifier = ImageTypeSpecifier.createFromBufferedImageType(BufferedImage.TYPE_INT_RGB);
         Iterator<ImageWriter> it = ImageIO.getImageWritersByFormatName(FORMAT_NAME);
         while (it.hasNext()) {
@@ -50,7 +47,7 @@ public class JavaxImageFileWriter implements ImageFileWriter {
         }
 
         if (writer != null && metadata != null && writeParam != null) {
-            logger.debug("Image writer found: {}", writer);
+            logger.trace("Image writer found: {}", writer);
 
             double pixelSize = Conversions.getPixelSizeMm(dpi);
             // Javax ImageIO JPEG writer requires decimeters, not millimeters.

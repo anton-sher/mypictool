@@ -7,7 +7,7 @@ class LayoutUtilTest extends Specification {
     @Unroll("Canvas size #canvasSize tiled to #tileSize yields #positions")
     def "CalculateTilePositions"() {
         expect:
-        positions == LayoutUtil.calculateTilePositions(0, canvasSize, tileSize)
+        positions == LayoutUtil.getEvenDistributionPositions(0, canvasSize, tileSize)
         where:
         canvasSize | tileSize | positions
         10         | 5        | [0, 5]
@@ -19,7 +19,7 @@ class LayoutUtilTest extends Specification {
     @Unroll("Canvas size #canvasSize tiled to #tileSize with offset #offset yields #positions")
     def "CalculateTilePositions with offset"() {
         expect:
-        positions == LayoutUtil.calculateTilePositions(offset, canvasSize, tileSize)
+        positions == LayoutUtil.getEvenDistributionPositions(offset, canvasSize, tileSize)
         where:
         offset | canvasSize | tileSize | positions
         2      | 10         | 5        | [3]
