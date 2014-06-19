@@ -2,9 +2,13 @@
 + add unit test for tiled image builder
 + add nullable/nonnull annotations in methods
 + add javadocs
-- fix maven spock configuration
+- create runnable jar
+
+= Timebox ran out
+
 - use args4j for main class
 - add possibility to specify sizes in args
+- fix maven spock configuration
 
 = M1: nice code
 

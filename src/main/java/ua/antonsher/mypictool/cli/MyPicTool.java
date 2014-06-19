@@ -1,7 +1,10 @@
-package ua.antonsher.mypictool;
+package ua.antonsher.mypictool.cli;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ua.antonsher.mypictool.Conversions;
+import ua.antonsher.mypictool.ImageFileWriter;
+import ua.antonsher.mypictool.TiledImageBuilder;
 import ua.antonsher.mypictool.filewriter.JavaxImageFileWriter;
 
 import javax.imageio.ImageIO;
