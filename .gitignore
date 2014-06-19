@@ -1,1 +1,3 @@
-./idea/libraries/
+target
+./idea/libraries
+./idea/workspace.xml

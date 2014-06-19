@@ -1,9 +1,10 @@
 + use slf4j+logback for logging
-- add unit test for tiled image builder
++ add unit test for tiled image builder
++ add nullable/nonnull annotations in methods
++ add javadocs
+- fix maven spock configuration
 - use args4j for main class
 - add possibility to specify sizes in args
-- add nullable/nonnull annotations in methods
-- add javadocs
 
 = M1: nice code
 
