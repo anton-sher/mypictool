@@ -23,7 +23,7 @@ public class MyPicTool {
 
     public static void main(String[] args) {
         if (args.length == 0) {
-            System.out.println("Tiled image creation tool.");
+            System.out.println("Tiled image creation tool. Places 35x45mm tiles on 150x100 mm canvas.");
             System.out.println("Please specify input image files separated by spaces.");
         }
         for (String arg : args) {
