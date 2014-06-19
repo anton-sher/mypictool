@@ -18,9 +18,9 @@ public class MyPicTool {
                 try {
                     BufferedImage input = ImageIO.read(file);
                     int dpi = 300;
-                    Dimension canvasDimension = DpiUtil.mmToPixel(new Dimension(150, 100), dpi);
+                    Dimension canvasDimension = Conversions.mmToPixel(new Dimension(150, 100), dpi);
                     BufferedImage image = new TiledImageBuilder(canvasDimension, currentTimeCaption(), dpi).build(input,
-                            DpiUtil.mmToPixel(new Dimension(35, 45), dpi));
+                            Conversions.mmToPixel(new Dimension(35, 45), dpi));
                     String newName = file.getName().replaceAll("(\\.[^.]+)$", "") + "-10x15.jpg";
                     ImageFileWriter imageFileWriter = new JavaxImageFileWriter();
                     imageFileWriter.saveAsJpeg(image, new File(newName), dpi);

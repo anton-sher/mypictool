@@ -16,7 +16,7 @@ public class TiledImageBuilder {
     public TiledImageBuilder(@Nonnull Dimension canvasDimension, @Nullable String headerCaption, int dpi) {
         this.canvasDimension = canvasDimension;
         this.headerCaption = headerCaption;
-        double scale = DpiUtil.scaleFactorFromStandardDpi(dpi);
+        double scale = Conversions.scaleFactorFromStandardDpi(dpi);
         this.font = FONT_BASE.deriveFont(AffineTransform.getScaleInstance(scale, scale));
     }
 

@@ -2,7 +2,7 @@ package ua.antonsher.mypictool;
 
 import java.awt.*;
 
-public class DpiUtil {
+public class Conversions {
     public static final double MM_IN_INCH = 25.4f;
     public static final double STANDARD_DPI = 72.;
 
