@@ -1,9 +1,10 @@
 package ua.antonsher.mypictool;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LayoutUtil {
-    public static java.util.List<Integer> calculateTilePositions(int offset, int canvasLength, int tileLength) {
+    public static List<Integer> calculateTilePositions(int offset, int canvasLength, int tileLength) {
         java.util.List<Integer> positions = new ArrayList<>();
         int effectiveCanvasLength = canvasLength - offset;
         int fittingTilesCount = effectiveCanvasLength / tileLength;
