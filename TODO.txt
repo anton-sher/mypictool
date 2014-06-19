@@ -1,4 +1,4 @@
-- use slf4j+logback for logging
++ use slf4j+logback for logging
 - add unit test for tiled image builder
 - use args4j for main class
 - add possibility to specify sizes in args
