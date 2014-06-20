@@ -2,12 +2,7 @@
 + add unit test for tiled image builder
 + add nullable/nonnull annotations in methods
 + add javadocs
-- create runnable jar
-
-= Timebox ran out
-
-- use args4j for main class
-- add possibility to specify sizes in args
++ create runnable jar
 - fix maven spock configuration
 
 = M1: nice code
@@ -35,3 +30,7 @@
             <artifactId>commons-imaging</artifactId>
             <version>1.0-20140325.172317-8</version>
         </dependency>
+
+= Rejected
+x use args4j for main class
+x add possibility to specify sizes in args
