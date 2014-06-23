@@ -22,18 +22,68 @@ import java.util.Iterator;
 public class JavaxImageFileWriter implements ImageFileWriter {
     private static final Logger logger = LoggerFactory.getLogger(JavaxImageFileWriter.class);
 
-    public static final String FORMAT_NAME = "JPEG";
+    private static final String FORMAT_NAME = "JPEG";
+    private static final int MM_IN_DM = 100;
+    private static final String ROOT_NODE = "javax_1.0";
+    private static final String HORIZONTAL_PIXEL_SIZE_NODE = "HorizontalPixelSize";
+    private static final String VERTICAL_PIXEL_SIZE_NODE = "VerticalPixelSize";
+    private static final String DIMENSION_NODE = "Dimension";
+    private static final String VALUE_TAG = "value";
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void saveAsJpeg(@Nonnull BufferedImage image, @Nonnull File targetFile, int dpi) {
+    public void saveAsJpeg(@Nonnull final BufferedImage image, @Nonnull final File targetFile, final int dpi) {
         logger.info("Saving image as JPEG to {} with DPI {}", targetFile, dpi);
 
+        final WriterWithParam writerWithParam = findJpegWriter();
+
+        // Javax ImageIO JPEG writer requires decimeters, not millimeters.
+        final double pixelSize = Conversions.getPixelSizeMm(dpi) / MM_IN_DM;
+
+        final IIOMetadataNode horizontal = new IIOMetadataNode(HORIZONTAL_PIXEL_SIZE_NODE);
+        horizontal.setAttribute(VALUE_TAG, Double.toString(pixelSize));
+
+        final IIOMetadataNode vertical = new IIOMetadataNode(VERTICAL_PIXEL_SIZE_NODE);
+        vertical.setAttribute(VALUE_TAG, Double.toString(pixelSize));
+
+        final IIOMetadataNode dim = new IIOMetadataNode(DIMENSION_NODE);
+        dim.appendChild(horizontal);
+        dim.appendChild(vertical);
+
+        final IIOMetadataNode root = new IIOMetadataNode(ROOT_NODE);
+        root.appendChild(dim);
+
+        try {
+            writerWithParam.metadata.mergeTree(ROOT_NODE, root);
+            try (ImageOutputStream stream = ImageIO.createImageOutputStream(targetFile)) {
+                writerWithParam.writer.setOutput(stream);
+                IIOImage iioImage = new IIOImage(image, null, writerWithParam.metadata);
+                writerWithParam.writer.write(writerWithParam.metadata, iioImage, writerWithParam.writeParam);
+            }
+        } catch (IOException e) {
+            throw new SaveImageException("Error saving JPEG file", e);
+        }
+    }
+
+    private static final class WriterWithParam {
+        final ImageWriter writer;
+        final IIOMetadata metadata;
+        final ImageWriteParam writeParam;
+
+        private WriterWithParam(ImageWriter writer, IIOMetadata metadata, ImageWriteParam writeParam) {
+            this.writer = writer;
+            this.metadata = metadata;
+            this.writeParam = writeParam;
+        }
+    }
+
+    private WriterWithParam findJpegWriter() {
         ImageWriter writer = null;
         IIOMetadata metadata = null;
         ImageWriteParam writeParam = null;
+
         logger.trace("Looking up image writer");
         ImageTypeSpecifier typeSpecifier = ImageTypeSpecifier.createFromBufferedImageType(BufferedImage.TYPE_INT_RGB);
         Iterator<ImageWriter> it = ImageIO.getImageWritersByFormatName(FORMAT_NAME);
@@ -48,33 +98,7 @@ public class JavaxImageFileWriter implements ImageFileWriter {
 
         if (writer != null && metadata != null && writeParam != null) {
             logger.trace("Image writer found: {}", writer);
-
-            double pixelSize = Conversions.getPixelSizeMm(dpi);
-            // Javax ImageIO JPEG writer requires decimeters, not millimeters.
-            pixelSize /= 100;
-
-            IIOMetadataNode horizontal = new IIOMetadataNode("HorizontalPixelSize");
-            horizontal.setAttribute("value", Double.toString(pixelSize));
-
-            IIOMetadataNode vertical = new IIOMetadataNode("VerticalPixelSize");
-            vertical.setAttribute("value", Double.toString(pixelSize));
-
-            IIOMetadataNode dim = new IIOMetadataNode("Dimension");
-            dim.appendChild(horizontal);
-            dim.appendChild(vertical);
-
-            IIOMetadataNode root = new IIOMetadataNode("javax_imageio_1.0");
-            root.appendChild(dim);
-
-            try {
-                metadata.mergeTree("javax_imageio_1.0", root);
-                try (ImageOutputStream stream = ImageIO.createImageOutputStream(targetFile)) {
-                    writer.setOutput(stream);
-                    writer.write(metadata, new IIOImage(image, null, metadata), writeParam);
-                }
-            } catch (IOException e) {
-                throw new SaveImageException("Error saving JPEG file", e);
-            }
+            return new WriterWithParam(writer, metadata, writeParam);
         } else {
             throw new SaveImageException("Error saving JPEG file: no writer found");
         }
