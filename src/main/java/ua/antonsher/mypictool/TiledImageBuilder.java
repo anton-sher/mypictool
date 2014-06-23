@@ -15,6 +15,7 @@ import java.awt.image.BufferedImage;
  */
 public class TiledImageBuilder {
     private static final Logger logger = LoggerFactory.getLogger(TiledImageBuilder.class);
+
     private static final Font FONT_BASE = new Font(Font.SANS_SERIF, Font.PLAIN, 10);
 
     private final Dimension canvasDimension;
@@ -26,7 +27,7 @@ public class TiledImageBuilder {
      * @param headerCaption   caption to add above. Added caption shifts all the tiles down below.
      * @param dpi             resolution of the output image. Required for proper font scaling.
      */
-    public TiledImageBuilder(@Nonnull Dimension canvasDimension, @Nullable String headerCaption, int dpi) {
+    public TiledImageBuilder(@Nonnull final Dimension canvasDimension, @Nullable final String headerCaption, final int dpi) {
         this.canvasDimension = canvasDimension;
         this.headerCaption = headerCaption;
         double scale = Conversions.scaleFactorFromStandardDpi(dpi);
@@ -40,12 +41,12 @@ public class TiledImageBuilder {
      * @param tileDimension size of the tile. Image will be scaled to this size.
      * @return new image with tiles and header caption placed on it.
      */
-    public BufferedImage build(@Nonnull Image tile, @Nonnull Dimension tileDimension) {
+    public BufferedImage build(@Nonnull final Image tile, @Nonnull final Dimension tileDimension) {
         logger.debug("Building tiled image with tile dimension {}", tileDimension);
-        BufferedImage canvas = new BufferedImage(canvasDimension.width, canvasDimension.height, BufferedImage.TYPE_INT_RGB);
+        final BufferedImage canvas = new BufferedImage(canvasDimension.width, canvasDimension.height, BufferedImage.TYPE_INT_RGB);
         logger.trace("Created image canvas");
 
-        Graphics2D graphics = canvas.createGraphics();
+        final Graphics2D graphics = canvas.createGraphics();
         logger.trace("Filling canvas background");
         graphics.setColor(Color.WHITE);
         graphics.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -53,10 +54,10 @@ public class TiledImageBuilder {
         final int headerHeight;
         if (headerCaption != null) {
             graphics.setFont(font);
-            FontMetrics fontMetrics = graphics.getFontMetrics(font);
+            final FontMetrics fontMetrics = graphics.getFontMetrics(font);
             headerHeight = fontMetrics.getHeight() + 2;
             graphics.setColor(Color.BLACK);
-            int headerPosition = fontMetrics.getAscent() + 1;
+            final int headerPosition = fontMetrics.getAscent() + 1;
             logger.trace("Writing canvas header caption {} at {}, {}", headerCaption, 1, headerPosition);
             graphics.drawString(headerCaption, 1, headerPosition);
         } else {
@@ -64,11 +65,11 @@ public class TiledImageBuilder {
             headerHeight = 0;
         }
 
-        java.util.List<Integer> xPositions = LayoutUtil.getEvenDistributionPositions(0, canvasDimension.width, tileDimension.width);
-        java.util.List<Integer> yPositions = LayoutUtil.getEvenDistributionPositions(headerHeight, canvasDimension.height, tileDimension.height);
+        final java.util.List<Integer> xPositions = LayoutUtil.getEvenDistributionPositions(0, canvasDimension.width, tileDimension.width);
+        final java.util.List<Integer> yPositions = LayoutUtil.getEvenDistributionPositions(headerHeight, canvasDimension.height, tileDimension.height);
         logger.trace("Calculated positions. x: {}, y: {}", xPositions, yPositions);
-        for (Integer x : xPositions) {
-            for (Integer y : yPositions) {
+        for (final Integer x : xPositions) {
+            for (final Integer y : yPositions) {
                 logger.trace("Placing image at ({}, {})", x, y);
                 graphics.drawImage(tile, x, y, tileDimension.width, tileDimension.height, null);
             }

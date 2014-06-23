@@ -16,5 +16,5 @@ public interface ImageFileWriter {
      * @param targetFile file in which the image is saved.
      * @param dpi DPI information to add to file metadata. Size of the saved image are not affected by this parameter.
      */
-    void saveAsJpeg(@Nonnull BufferedImage image, @Nonnull File targetFile, int dpi) throws SaveImageException;
+    void saveAsJpeg(@Nonnull final BufferedImage image, @Nonnull final File targetFile, final int dpi) throws SaveImageException;
 }
