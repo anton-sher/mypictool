@@ -24,7 +24,7 @@ public class JavaxImageFileWriter implements ImageFileWriter {
 
     private static final String FORMAT_NAME = "JPEG";
     private static final int MM_IN_DM = 100;
-    private static final String ROOT_NODE = "javax_1.0";
+    private static final String ROOT_NODE = "javax_imageio_1.0";
     private static final String HORIZONTAL_PIXEL_SIZE_NODE = "HorizontalPixelSize";
     private static final String VERTICAL_PIXEL_SIZE_NODE = "VerticalPixelSize";
     private static final String DIMENSION_NODE = "Dimension";
