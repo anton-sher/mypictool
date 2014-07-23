@@ -24,7 +24,7 @@ public class LayoutUtil {
      * @param tileLength inner segment length.
      * @return list of positions of left end of tiles to place. May be empty.
      */
-    public static @Nonnull List<Integer> getEvenDistributionPositions(final int offset, final int canvasLength, final int tileLength) {
+    public @Nonnull List<Integer> getEvenDistributionPositions(final int offset, final int canvasLength, final int tileLength) {
         final int effectiveCanvasLength = canvasLength - offset;
         final int fittingTilesCount = effectiveCanvasLength / tileLength;
         final int distanceBetweenTiles = effectiveCanvasLength % tileLength / (fittingTilesCount + 1);
@@ -43,7 +43,7 @@ public class LayoutUtil {
      * @param border width of the border to leave when fitting the item.
      * @return resulting dimensions of the item after the downscaling.
      */
-    public static @Nonnull Dimension fitInto(@Nonnull final Dimension itemDimension, @Nonnull final Dimension canvasDimension, final int border) {
+    public @Nonnull Dimension fitInto(@Nonnull final Dimension itemDimension, @Nonnull final Dimension canvasDimension, final int border) {
         final int canvasWidth = canvasDimension.width - 2 * border;
         final int canvasHeight = canvasDimension.height - 2 * border;
 

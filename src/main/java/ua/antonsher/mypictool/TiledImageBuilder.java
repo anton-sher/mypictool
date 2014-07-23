@@ -21,14 +21,16 @@ public class TiledImageBuilder {
     private final Dimension canvasDimension;
     private final String headerCaption;
     private final Font font;
+    private final LayoutUtil layoutUtil;
 
     /**
      * @param canvasDimension dimensions of the output picture, in pixels.
      * @param headerCaption   caption to add above. Added caption shifts all the tiles down below.
      * @param dpi             resolution of the output image. Required for proper font scaling.
      */
-    public TiledImageBuilder(@Nonnull final Dimension canvasDimension, @Nullable final String headerCaption, final int dpi) {
-        this.canvasDimension = canvasDimension;
+    public TiledImageBuilder(@Nonnull final LayoutUtil layoutUtil, @Nonnull final Dimension canvasDimension, @Nullable final String headerCaption, final int dpi) {
+        this.layoutUtil = layoutUtil;
+		this.canvasDimension = canvasDimension;
         this.headerCaption = headerCaption;
         double scale = Conversions.scaleFactorFromStandardDpi(dpi);
         this.font = FONT_BASE.deriveFont(AffineTransform.getScaleInstance(scale, scale));
@@ -65,8 +67,8 @@ public class TiledImageBuilder {
             headerHeight = 0;
         }
 
-        final java.util.List<Integer> xPositions = LayoutUtil.getEvenDistributionPositions(0, canvasDimension.width, tileDimension.width);
-        final java.util.List<Integer> yPositions = LayoutUtil.getEvenDistributionPositions(headerHeight, canvasDimension.height, tileDimension.height);
+        final java.util.List<Integer> xPositions = layoutUtil.getEvenDistributionPositions(0, canvasDimension.width, tileDimension.width);
+        final java.util.List<Integer> yPositions = layoutUtil.getEvenDistributionPositions(headerHeight, canvasDimension.height, tileDimension.height);
         logger.trace("Calculated positions. x: {}, y: {}", xPositions, yPositions);
         for (final Integer x : xPositions) {
             for (final Integer y : yPositions) {

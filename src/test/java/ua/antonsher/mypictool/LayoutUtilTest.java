@@ -26,7 +26,7 @@ public class LayoutUtilTest {
 
     @Test
     public void test() {
-        assertEquals(positions, LayoutUtil.getEvenDistributionPositions(offset, canvasSize, tileSize));
+        assertEquals(positions, new LayoutUtil().getEvenDistributionPositions(offset, canvasSize, tileSize));
     }
 
     @Parameters(name = "Canvas size {1} tiled to {2} with offset {0} yields {3}")

@@ -11,16 +11,23 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import com.google.common.collect.HashMultiset;
 import com.google.common.primitives.Ints;
 
 public class TiledImageBuilderTest {
+	private LayoutUtil layoutUtil;
+	
+	@Before
+	public void setup() {
+		layoutUtil = new LayoutUtil();
+	}
 
     @Test
     public void testTiledImageWithoutCaptionContainsProperColorPoints() throws Exception {
-        TiledImageBuilder builder = new TiledImageBuilder(new Dimension(45, 34), null, (int) Conversions.STANDARD_DPI);
+        TiledImageBuilder builder = new TiledImageBuilder(layoutUtil, new Dimension(45, 34), null, (int) Conversions.STANDARD_DPI);
         BufferedImage tile = makeGreenTile();
         BufferedImage tiledImage = builder.build(tile, new Dimension(10, 10));
         ImageIO.write(tiledImage, "JPEG", new File("out0.jpg"));
@@ -37,7 +44,7 @@ public class TiledImageBuilderTest {
 
     @Test
     public void testTiledImageWithCaptionContainsEightTiles() throws Exception {
-        TiledImageBuilder builder = new TiledImageBuilder(new Dimension(45, 40), "123", (int) Conversions.STANDARD_DPI);
+        TiledImageBuilder builder = new TiledImageBuilder(layoutUtil, new Dimension(45, 40), "123", (int) Conversions.STANDARD_DPI);
         BufferedImage tile = makeGreenTile();
         BufferedImage tiledImage = builder.build(tile, new Dimension(10, 10));
         ImageIO.write(tiledImage, "JPEG", new File("out1.jpg"));

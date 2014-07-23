@@ -2,12 +2,15 @@ package ua.antonsher.mypictool.actions;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import ua.antonsher.mypictool.Conversions;
 import ua.antonsher.mypictool.ImageFileWriter;
+import ua.antonsher.mypictool.LayoutUtil;
 import ua.antonsher.mypictool.TiledImageBuilder;
 import ua.antonsher.mypictool.filewriter.JavaxImageFileWriter;
 
 import javax.imageio.ImageIO;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -37,7 +40,7 @@ public class CreateTiledImage {
 
         final String headerCaption = currentTimeCaption();
         logger.debug("Building tiled image with caption '{}'", headerCaption);
-        final TiledImageBuilder imageBuilder = new TiledImageBuilder(canvasDimension, headerCaption, DPI);
+        final TiledImageBuilder imageBuilder = new TiledImageBuilder(new LayoutUtil(), canvasDimension, headerCaption, DPI);
         final BufferedImage image = imageBuilder.build(input, tileDimension);
 
         final String outputFileName = file.getName().replaceAll(FILE_EXTENSION_REGEX, "") + FILE_NAME_ENDING;
