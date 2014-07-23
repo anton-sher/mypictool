@@ -7,7 +7,7 @@ import java.awt.Color
 import java.awt.Dimension
 import java.awt.image.BufferedImage
 
-class TiledImageBuilderTest extends Specification {
+class TiledImageBuilderTestOld extends Specification {
     def "tiled image without caption contains properly color points"() {
         given:
         def builder = new TiledImageBuilder(new Dimension(45, 34), null, (int)Conversions.STANDARD_DPI)
