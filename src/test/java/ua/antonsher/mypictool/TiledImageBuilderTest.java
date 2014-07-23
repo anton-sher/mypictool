@@ -1,16 +1,20 @@
 package ua.antonsher.mypictool;
 
-import com.google.common.collect.HashMultiset;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-import static java.util.Arrays.asList;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import javax.imageio.ImageIO;
+
+import org.junit.Test;
+
+import com.google.common.collect.HashMultiset;
+import com.google.common.primitives.Ints;
 
 public class TiledImageBuilderTest {
 
@@ -40,7 +44,7 @@ public class TiledImageBuilderTest {
         assertNotNull(tiledImage);
         int[] rgb = new int[45 * 40];
         tiledImage.getRGB(0, 0, 45, 40, rgb, 0, 45);
-        assertEquals(800, HashMultiset.create(asList(rgb)).count(Color.GREEN.getRGB()));
+        assertEquals(800, HashMultiset.create(Ints.asList(rgb)).count(Color.GREEN.getRGB()));
     }
 
     private static BufferedImage makeGreenTile() {
