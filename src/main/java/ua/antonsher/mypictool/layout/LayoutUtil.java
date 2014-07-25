@@ -1,4 +1,4 @@
-package ua.antonsher.mypictool;
+package ua.antonsher.mypictool.layout;
 
 import javax.annotation.Nonnull;
 import java.awt.*;

@@ -1,8 +1,9 @@
-package ua.antonsher.mypictool;
+package ua.antonsher.mypictool.filewriter;
 
 import ua.antonsher.mypictool.exceptions.SaveImageException;
 
 import javax.annotation.Nonnull;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 

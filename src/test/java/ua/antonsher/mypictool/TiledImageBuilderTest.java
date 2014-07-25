@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import org.junit.Before;
 import org.junit.Test;
 
+import ua.antonsher.mypictool.layout.LayoutUtil;
 import ua.antonsher.mypictool.util.Conversions;
 
 import com.google.common.collect.HashMultiset;

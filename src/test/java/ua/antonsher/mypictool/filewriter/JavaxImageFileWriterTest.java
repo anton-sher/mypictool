@@ -3,7 +3,8 @@ package ua.antonsher.mypictool.filewriter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ua.antonsher.mypictool.ImageFileWriter;
+
+import ua.antonsher.mypictool.filewriter.javaxiio.JavaxImageFileWriter;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

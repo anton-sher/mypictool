@@ -1,10 +1,10 @@
-package ua.antonsher.mypictool.filewriter;
+package ua.antonsher.mypictool.filewriter.javaxiio;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ua.antonsher.mypictool.ImageFileWriter;
 import ua.antonsher.mypictool.exceptions.SaveImageException;
+import ua.antonsher.mypictool.filewriter.ImageFileWriter;
 import ua.antonsher.mypictool.util.Conversions;
 
 import javax.annotation.Nonnull;

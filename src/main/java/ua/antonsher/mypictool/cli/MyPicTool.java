@@ -2,7 +2,9 @@ package ua.antonsher.mypictool.cli;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import ua.antonsher.mypictool.actions.CreateTiledImage;
+import ua.antonsher.mypictool.filewriter.javaxiio.JavaxImageFileWriterFactory;
 
 import java.io.File;
 
@@ -22,7 +24,7 @@ public class MyPicTool {
             logger.info("Processing input file {}", file);
             if (file.isFile()) {
                 try {
-                    final CreateTiledImage createTiledImage = new CreateTiledImage();
+                    final CreateTiledImage createTiledImage = new CreateTiledImage(new JavaxImageFileWriterFactory());
                     createTiledImage.createTiledImage(file);
                     logger.info("Processing input file {} finished", file);
                 } catch (Exception e) {
