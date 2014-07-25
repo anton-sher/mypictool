@@ -1,12 +1,15 @@
 package ua.antonsher.mypictool.cli;
 
+import java.io.File;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ua.antonsher.mypictool.actions.CreateTiledImage;
-import ua.antonsher.mypictool.filewriter.javaxiio.JavaxImageFileWriterFactory;
+import ua.antonsher.mypictool.di.TiledImageWithJavaxModule;
 
-import java.io.File;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
 /**
  * Main class of the pic tool. Provides a CLI interface for some supported actions.
@@ -24,7 +27,8 @@ public class MyPicTool {
             logger.info("Processing input file {}", file);
             if (file.isFile()) {
                 try {
-                    final CreateTiledImage createTiledImage = new CreateTiledImage(new JavaxImageFileWriterFactory());
+                	Injector injector = Guice.createInjector(new TiledImageWithJavaxModule());
+                	final CreateTiledImage createTiledImage = injector.getInstance(CreateTiledImage.class);
                     createTiledImage.createTiledImage(file);
                     logger.info("Processing input file {} finished", file);
                 } catch (Exception e) {

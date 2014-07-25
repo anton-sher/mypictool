@@ -12,6 +12,7 @@ import javax.imageio.*;
 import javax.imageio.metadata.IIOMetadata;
 import javax.imageio.metadata.IIOMetadataNode;
 import javax.imageio.stream.ImageOutputStream;
+import javax.inject.Inject;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -32,6 +33,9 @@ public class JavaxImageFileWriter implements ImageFileWriter {
     private static final String DIMENSION_NODE = "Dimension";
     private static final String VALUE_TAG = "value";
 
+    @Inject
+    public JavaxImageFileWriter() {}
+    
     /**
      * {@inheritDoc}
      */
