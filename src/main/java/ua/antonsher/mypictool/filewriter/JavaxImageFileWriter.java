@@ -2,15 +2,17 @@ package ua.antonsher.mypictool.filewriter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ua.antonsher.mypictool.Conversions;
+
 import ua.antonsher.mypictool.ImageFileWriter;
 import ua.antonsher.mypictool.exceptions.SaveImageException;
+import ua.antonsher.mypictool.util.Conversions;
 
 import javax.annotation.Nonnull;
 import javax.imageio.*;
 import javax.imageio.metadata.IIOMetadata;
 import javax.imageio.metadata.IIOMetadataNode;
 import javax.imageio.stream.ImageOutputStream;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;

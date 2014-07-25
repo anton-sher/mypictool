@@ -3,11 +3,11 @@ package ua.antonsher.mypictool.actions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ua.antonsher.mypictool.Conversions;
 import ua.antonsher.mypictool.ImageFileWriter;
 import ua.antonsher.mypictool.LayoutUtil;
 import ua.antonsher.mypictool.TiledImageBuilder;
 import ua.antonsher.mypictool.filewriter.JavaxImageFileWriter;
+import ua.antonsher.mypictool.util.Conversions;
 
 import javax.imageio.ImageIO;
 

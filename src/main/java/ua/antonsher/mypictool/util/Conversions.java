@@ -1,4 +1,4 @@
-package ua.antonsher.mypictool;
+package ua.antonsher.mypictool.util;
 
 import java.awt.*;
 
