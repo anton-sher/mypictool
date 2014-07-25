@@ -7,9 +7,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
-
-import javax.imageio.ImageIO;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +30,7 @@ public class TiledImageBuilderTest {
         TiledImageBuilder builder = new TiledImageBuilder(layoutUtil, new Dimension(45, 34), null, (int) Conversions.STANDARD_DPI);
         BufferedImage tile = makeGreenTile();
         BufferedImage tiledImage = builder.build(tile, new Dimension(10, 10));
-        ImageIO.write(tiledImage, "JPEG", new File("out0.jpg"));
+//        ImageIO.write(tiledImage, "JPEG", new File("out0.jpg"));
         assertNotNull(tiledImage);
         assertEquals(tiledImage.getRGB(0, 0), Color.WHITE.getRGB());
         assertEquals(tiledImage.getRGB(1, 1), Color.GREEN.getRGB());
@@ -50,7 +47,7 @@ public class TiledImageBuilderTest {
         TiledImageBuilder builder = new TiledImageBuilder(layoutUtil, new Dimension(45, 40), "123", (int) Conversions.STANDARD_DPI);
         BufferedImage tile = makeGreenTile();
         BufferedImage tiledImage = builder.build(tile, new Dimension(10, 10));
-        ImageIO.write(tiledImage, "JPEG", new File("out1.jpg"));
+//        ImageIO.write(tiledImage, "JPEG", new File("out1.jpg"));
         assertNotNull(tiledImage);
         int[] rgb = new int[45 * 40];
         tiledImage.getRGB(0, 0, 45, 40, rgb, 0, 45);
